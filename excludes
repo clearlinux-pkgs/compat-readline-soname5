@@ -1,2 +1,7 @@
 # This file contains the output files that need %exclude. Full path
 # names, one per line.
+/usr/share/man/man3/history.3
+/usr/share/man/man3/readline.3
+/usr/share/info/history.info
+/usr/share/info/readline.info
+/usr/share/info/rluserman.info

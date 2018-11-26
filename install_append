@@ -1,0 +1,3 @@
+mv %{buildroot}/usr/include/readline  %{buildroot}/usr/include/readline5
+mv %{buildroot}/usr/lib64/libhistory.so %{buildroot}/usr/lib64/libhistory5.so
+mv %{buildroot}/usr/lib64/libreadline.so %{buildroot}/usr/lib64/libreadline5.so
