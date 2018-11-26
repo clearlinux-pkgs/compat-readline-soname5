@@ -6,7 +6,7 @@
 #
 Name     : compat-readline-soname5
 Version  : 5.2
-Release  : 1
+Release  : 2
 URL      : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source0  : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source99 : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz.sig
@@ -71,8 +71,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543248757
-%configure --disable-static
+export SOURCE_DATE_EPOCH=1543248934
+%configure --disable-static --includedir=/usr/include/readline5/
 make  %{?_smp_mflags}
 
 %check
@@ -83,7 +83,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1543248757
+export SOURCE_DATE_EPOCH=1543248934
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-readline-soname5
 cp COPYING %{buildroot}/usr/share/package-licenses/compat-readline-soname5/COPYING
@@ -94,14 +94,14 @@ cp COPYING %{buildroot}/usr/share/package-licenses/compat-readline-soname5/COPYI
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/readline/chardefs.h
-/usr/include/readline/history.h
-/usr/include/readline/keymaps.h
-/usr/include/readline/readline.h
-/usr/include/readline/rlconf.h
-/usr/include/readline/rlstdc.h
-/usr/include/readline/rltypedefs.h
-/usr/include/readline/tilde.h
+/usr/include/readline5/readline/chardefs.h
+/usr/include/readline5/readline/history.h
+/usr/include/readline5/readline/keymaps.h
+/usr/include/readline5/readline/readline.h
+/usr/include/readline5/readline/rlconf.h
+/usr/include/readline5/readline/rlstdc.h
+/usr/include/readline5/readline/rltypedefs.h
+/usr/include/readline5/readline/tilde.h
 /usr/lib64/libhistory.so
 /usr/lib64/libreadline.so
 /usr/share/man/man3/history.3
