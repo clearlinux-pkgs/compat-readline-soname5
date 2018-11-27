@@ -6,7 +6,7 @@
 #
 Name     : compat-readline-soname5
 Version  : 5.2
-Release  : 4
+Release  : 5
 URL      : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source0  : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source99 : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz.sig
@@ -71,8 +71,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543249271
-%configure --disable-static
+export SOURCE_DATE_EPOCH=1543316663
+%configure --disable-static --includedir=/usr/include/readline5/
 make  %{?_smp_mflags}
 
 %check
@@ -83,13 +83,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1543249271
+export SOURCE_DATE_EPOCH=1543316663
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-readline-soname5
 cp COPYING %{buildroot}/usr/share/package-licenses/compat-readline-soname5/COPYING
 %make_install
 ## install_append content
-mv %{buildroot}/usr/include/readline  %{buildroot}/usr/include/readline5
 mv %{buildroot}/usr/lib64/libhistory.so %{buildroot}/usr/lib64/libhistory5.so
 mv %{buildroot}/usr/lib64/libreadline.so %{buildroot}/usr/lib64/libreadline5.so
 ## install_append end
@@ -101,14 +100,14 @@ mv %{buildroot}/usr/lib64/libreadline.so %{buildroot}/usr/lib64/libreadline5.so
 %defattr(-,root,root,-)
 %exclude /usr/share/man/man3/history.3
 %exclude /usr/share/man/man3/readline.3
-/usr/include/readline5/chardefs.h
-/usr/include/readline5/history.h
-/usr/include/readline5/keymaps.h
-/usr/include/readline5/readline.h
-/usr/include/readline5/rlconf.h
-/usr/include/readline5/rlstdc.h
-/usr/include/readline5/rltypedefs.h
-/usr/include/readline5/tilde.h
+/usr/include/readline5/readline/chardefs.h
+/usr/include/readline5/readline/history.h
+/usr/include/readline5/readline/keymaps.h
+/usr/include/readline5/readline/readline.h
+/usr/include/readline5/readline/rlconf.h
+/usr/include/readline5/readline/rlstdc.h
+/usr/include/readline5/readline/rltypedefs.h
+/usr/include/readline5/readline/tilde.h
 /usr/lib64/libhistory5.so
 /usr/lib64/libreadline5.so
 
