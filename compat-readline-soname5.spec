@@ -6,7 +6,7 @@
 #
 Name     : compat-readline-soname5
 Version  : 5.2
-Release  : 7
+Release  : 8
 URL      : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source0  : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source1 : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz.sig
