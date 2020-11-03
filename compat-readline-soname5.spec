@@ -6,10 +6,10 @@
 #
 Name     : compat-readline-soname5
 Version  : 5.2
-Release  : 8
+Release  : 9
 URL      : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source0  : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
-Source1 : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz.sig
+Source1  : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -60,20 +60,21 @@ license components for the compat-readline-soname5 package.
 
 %prep
 %setup -q -n readline-5.2
+cd %{_builddir}/readline-5.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567834662
+export SOURCE_DATE_EPOCH=1604443266
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --includedir=/usr/include/readline5/
 make  %{?_smp_mflags}
@@ -83,13 +84,13 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1567834662
+export SOURCE_DATE_EPOCH=1604443266
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-readline-soname5
-cp COPYING %{buildroot}/usr/share/package-licenses/compat-readline-soname5/COPYING
+cp %{_builddir}/readline-5.2/COPYING %{buildroot}/usr/share/package-licenses/compat-readline-soname5/a2c02b708b37f47c7b9ebb49c18a3e26d3cb3e8b
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}/usr/share/man/man3/history.3
@@ -127,4 +128,4 @@ mv %{buildroot}/usr/lib64/libreadline.so %{buildroot}/usr/lib64/libreadline5.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/compat-readline-soname5/COPYING
+/usr/share/package-licenses/compat-readline-soname5/a2c02b708b37f47c7b9ebb49c18a3e26d3cb3e8b
