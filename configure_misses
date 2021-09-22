@@ -1,14 +1,14 @@
-Configure miss: varargs.h usability
-Configure miss: varargs.h presence
-Configure miss: varargs.h
-Configure miss: sys/pte.h usability
-Configure miss: sys/pte.h presence
-Configure miss: sys/pte.h
-Configure miss: sys/stream.h usability
-Configure miss: sys/stream.h presence
-Configure miss: sys/stream.h
-Configure miss: sys/ptem.h
-Configure miss: whether or not strcoll and strcmp differ
-Configure miss: whether the ctype macros accept non-ascii characters
 Configure miss: TIOCSTAT in sys/ioctl.h
 Configure miss: speed_t in sys/types.h
+Configure miss: sys/pte.h
+Configure miss: sys/pte.h presence
+Configure miss: sys/pte.h usability
+Configure miss: sys/ptem.h
+Configure miss: sys/stream.h
+Configure miss: sys/stream.h presence
+Configure miss: sys/stream.h usability
+Configure miss: varargs.h
+Configure miss: varargs.h presence
+Configure miss: varargs.h usability
+Configure miss: whether or not strcoll and strcmp differ
+Configure miss: whether the ctype macros accept non-ascii characters

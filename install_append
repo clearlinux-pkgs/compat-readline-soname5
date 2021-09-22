@@ -1,2 +1,9 @@
 mv %{buildroot}/usr/lib64/libhistory.so %{buildroot}/usr/lib64/libhistory5.so
 mv %{buildroot}/usr/lib64/libreadline.so %{buildroot}/usr/lib64/libreadline5.so
+# Default perms are 555, but this causes `brp-strip` to fail: it requires write
+# access to the files. With rpm < 4.17 on Clear Linux, the files were not
+# processed; `brp-strip-shared` was responsible for processing these files, but
+# that script was disabled.  With rpm 4.17, `brp-strip` handles processing of
+# most ELF content (except debuginfo and kernel modules).
+chmod 755 %{buildroot}/usr/lib64/libhistory.so.5.*
+chmod 755 %{buildroot}/usr/lib64/libreadline.so.5.*

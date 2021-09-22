@@ -6,7 +6,7 @@
 #
 Name     : compat-readline-soname5
 Version  : 5.2
-Release  : 9
+Release  : 10
 URL      : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source0  : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 Source1  : https://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz.sig
@@ -67,15 +67,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604443266
+export SOURCE_DATE_EPOCH=1632275375
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static --includedir=/usr/include/readline5/
 make  %{?_smp_mflags}
 
@@ -87,7 +87,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1604443266
+export SOURCE_DATE_EPOCH=1632275375
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-readline-soname5
 cp %{_builddir}/readline-5.2/COPYING %{buildroot}/usr/share/package-licenses/compat-readline-soname5/a2c02b708b37f47c7b9ebb49c18a3e26d3cb3e8b
@@ -101,6 +101,13 @@ rm -f %{buildroot}/usr/share/info/rluserman.info
 ## install_append content
 mv %{buildroot}/usr/lib64/libhistory.so %{buildroot}/usr/lib64/libhistory5.so
 mv %{buildroot}/usr/lib64/libreadline.so %{buildroot}/usr/lib64/libreadline5.so
+# Default perms are 555, but this causes `brp-strip` to fail: it requires write
+# access to the files. With rpm < 4.17 on Clear Linux, the files were not
+# processed; `brp-strip-shared` was responsible for processing these files, but
+# that script was disabled.  With rpm 4.17, `brp-strip` handles processing of
+# most ELF content (except debuginfo and kernel modules).
+chmod 755 %{buildroot}/usr/lib64/libhistory.so.5.*
+chmod 755 %{buildroot}/usr/lib64/libreadline.so.5.*
 ## install_append end
 
 %files
